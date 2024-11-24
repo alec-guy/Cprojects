@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+
+void removeNewline(char *string);
+
+int main()
+{
+    FILE *fptr;
+
+    char filename[50];
+    printf("Enter filename: ");
+    fgets(filename, sizeof(filename), stdin);
+
+    removeNewline(filename);
+
+    fptr = fopen(filename, "r");
+
+    if (fptr == NULL)
+    {
+        printf("Could not open file %s\n", filename);
+        return 1;
+    }
+    char buffer[100];
+    while (fgets(buffer, sizeof(buffer), fptr) != NULL)
+    {
+        printf("%s", buffer);
+    }
+    fclose(fptr);
+
+    return 0;
+}
+void removeNewline(char *string)
+{
+    size_t len = strlen(string);
+    if (len > 0 && string[len - 1] == '\n')
+    {
+        string[len - 1] = '\0'; // Replace newline with null terminator
+    }
+}
