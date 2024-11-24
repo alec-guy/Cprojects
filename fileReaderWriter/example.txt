@@ -1,3 +1,3 @@
-hello world
-My name is Alec 
-and I am very very handsome. 
+I am learning C 
+Because I want to C 
+what it's like. Blueberry

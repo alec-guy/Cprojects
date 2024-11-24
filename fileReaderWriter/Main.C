@@ -4,7 +4,7 @@
 void removeNewline(char *string);
 
 int main()
-{
+{ // File pointer
     FILE *fptr;
 
     char filename[50];
@@ -26,21 +26,29 @@ int main()
         printf("%s", buffer);
     }
     char fileInput[100];
+
     printf("\nEnter file input to append to the file: ");
+
     fgets(fileInput, sizeof(fileInput), stdin);
-    fputs(fileInput, fptr);
-    // check to see if it worked
-    printf("Writing out new file now...\n");
-    printf("============= seperating data ====\n");
+
+    removeNewline(fileInput);
+
+    fprintf(fptr, fileInput);
+
+    fclose(fptr);
+
+    FILE *secondFptr;
+
+    secondFptr = fopen(filename, "r+");
 
     char newBuffer[100]; // making new buffer for some reason
-    while (fgets(newBuffer, sizeof(newBuffer), fptr) != NULL)
+    while (fgets(newBuffer, sizeof(newBuffer), secondFptr) != NULL)
     {
         printf("%s", newBuffer);
     }
     printf("Ending program");
 
-    fclose(fptr);
+    fclose(secondFptr);
 
     return 0;
 }
