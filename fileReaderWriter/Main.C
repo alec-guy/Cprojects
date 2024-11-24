@@ -13,7 +13,7 @@ int main()
 
     removeNewline(filename);
 
-    fptr = fopen(filename, "r");
+    fptr = fopen(filename, "r+");
 
     if (fptr == NULL)
     {
@@ -25,6 +25,21 @@ int main()
     {
         printf("%s", buffer);
     }
+    char fileInput[100];
+    printf("\nEnter file input to append to the file: ");
+    fgets(fileInput, sizeof(fileInput), stdin);
+    fputs(fileInput, fptr);
+    // check to see if it worked
+    printf("Writing out new file now...\n");
+    printf("============= seperating data ====\n");
+
+    char newBuffer[100]; // making new buffer for some reason
+    while (fgets(newBuffer, sizeof(newBuffer), fptr) != NULL)
+    {
+        printf("%s", newBuffer);
+    }
+    printf("Ending program");
+
     fclose(fptr);
 
     return 0;
